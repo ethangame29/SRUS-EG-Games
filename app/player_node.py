@@ -19,7 +19,7 @@ class PlayerNode:
 
     @property
     def nextNode(self):
-        return self.nextNode
+        return self.__nextNode
 
     @property
     def prevNode(self):
