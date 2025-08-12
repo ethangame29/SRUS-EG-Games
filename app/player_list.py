@@ -15,6 +15,18 @@ class PlayerList:
     def tail(self):
         return self.__tail
 
+    def display(self, forward = True):
+        if forward is True:
+            currentNode = self.__head
+            while currentNode is not None:
+                print(currentNode.player)
+                currentNode = currentNode.prevNode
+        else:
+            currentNode = self.__tail
+            while currentNode is not None:
+                print(currentNode.player)
+                currentNode = currentNode.nextNode
+
     def append(self, id, name):
         if self.__head is not None:
             newNode = player_node.PlayerNode(player.Player(id, name))
