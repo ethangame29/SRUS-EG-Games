@@ -29,3 +29,28 @@ class PlayerListTest(unittest.TestCase):
         self.assertEqual(playerlist.head.key, 1234)
         self.assertEqual(playerlist.head.prevNode, playerlist.tail)
         self.assertEqual(playerlist.tail.nextNode, playerlist.head)
+
+    def test_pop_head(self):
+        playerlist = PlayerList()
+        playerlist.append(1234, "Joe")
+        playerlist.append(3, "Ethan")
+        playerlist.append(1, "Bob")
+        playerlist.popHead()
+        self.assertEqual(playerlist.head.key, 3)
+
+    def test_pop_tail(self):
+        playerlist = PlayerList()
+        playerlist.append(1234, "Joe")
+        playerlist.append(3, "Ethan")
+        playerlist.append(1, "Bob")
+        playerlist.popTail()
+        self.assertEqual(playerlist.tail.key, 3)
+
+    def test_pop_by_key(self):
+        playerlist = PlayerList()
+        playerlist.append(1234, "Joe")
+        playerlist.append(3, "Ethan")
+        playerlist.append(1, "Bob")
+        self.assertEqual(playerlist.pop(3), 3)
+        self.assertEqual(playerlist.head.prevNode, playerlist.tail)
+        self.assertEqual(playerlist.tail.nextNode, playerlist.head)
