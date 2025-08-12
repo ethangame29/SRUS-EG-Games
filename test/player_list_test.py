@@ -8,6 +8,7 @@ class PlayerListTest(unittest.TestCase):
         playerList = PlayerList()
         playerList.append(1234, "Joe")
         self.assertEqual(playerList.head.key, 1234)
+        self.assertEqual(playerList.head, playerList.tail)
 
     def test_append_to_non_empty_list(self):
         playerList = PlayerList()
@@ -17,3 +18,4 @@ class PlayerListTest(unittest.TestCase):
         self.assertEqual(playerList.head.key, 3)
         self.assertEqual(playerList.head.prevNode.key, 1234)
         self.assertEqual(playerList.head.prevNode.nextNode.key, 3)
+        self.assertEqual(playerList.head.prevNode, playerList.tail)

@@ -5,10 +5,15 @@ class PlayerList:
 
     def __init__(self):
         self.__head = None
+        self.__tail = None
 
     @property
     def head(self):
         return self.__head
+
+    @property
+    def tail(self):
+        return self.__tail
 
     def append(self, id, name):
         if self.__head is not None:
@@ -19,3 +24,4 @@ class PlayerList:
         else:
             newNode = player_node.PlayerNode(player.Player(id, name))
             self.__head = newNode
+            self.__tail = newNode
