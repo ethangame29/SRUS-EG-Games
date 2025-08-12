@@ -21,6 +21,12 @@ class PlayerNode:
     def nextNode(self):
         return self.__nextNode
 
+    def setNextNode(self, node):
+        self.__nextNode = node
+
     @property
     def prevNode(self):
         return self.__prevNode
+
+    def setPrevNode(self, node):
+        self.__prevNode = node

@@ -1,5 +1,21 @@
+import player_node
+import player
 
 class PlayerList:
 
     def __init__(self):
         self.__head = None
+
+    @property
+    def head(self):
+        return self.__head
+
+    def append(self, id, name):
+        if self.__head is not None:
+            newNode = player_node.PlayerNode(player.Player(id, name))
+            self.__head.setNextNode(newNode)
+            newNode.setPrevNode(self.__head)
+            self.__head = newNode
+        else:
+            newNode = player_node.PlayerNode(player.Player(id, name))
+            self.__head = newNode
