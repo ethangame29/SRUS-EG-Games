@@ -6,6 +6,7 @@ class PlayerList:
     def __init__(self):
         self.__head = None
         self.__tail = None
+        self.__length = 0
 
     @property
     def head(self):
@@ -14,6 +15,9 @@ class PlayerList:
     @property
     def tail(self):
         return self.__tail
+
+    def __len__(self):
+        return self.__length
 
     def display(self, forward = True):
         if forward is True:
@@ -37,6 +41,7 @@ class PlayerList:
             newNode = player_node.PlayerNode(player.Player(id, name))
             self.__head = newNode
             self.__tail = newNode
+        self.__length += 1
 
     def appendEnd(self, id, name):
         if self.__head is not None:
@@ -46,14 +51,16 @@ class PlayerList:
             self.__tail = newNode
         else:
             self.append(id, name)
+        self.__length += 1
 
     def popHead(self):
         self.__head = self.__head.prevNode
         self.__head.setNextNode = None
-
+        self.__length -= 1
     def popTail(self):
         self.__tail = self.__tail.nextNode
         self.__tail.setPrevNode = None
+        self.__length -= 1
 
     def pop(self, key):
         id = self.__head.key
@@ -66,5 +73,7 @@ class PlayerList:
 
         nextnode.setPrevNode(prevnode)
         prevnode.setNextNode(nextnode)
+
+        self.__length -= 1
 
         return id
