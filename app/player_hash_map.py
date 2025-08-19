@@ -17,14 +17,14 @@ class PlayerHashMap:
             return Player.hash_function(key) % self.SIZE
 
     def __setitem__(self, key: str, name: str) -> None:
-        playerFound = False
+        player_found = False
         playerList = self.hashmap[self.get_index(key)]
-        currentNode = playerList.head
-        while currentNode is not None:
-            if currentNode.player.uid == key:
-                currentNode.player.set_name(name)
-                playerFound = True
-            currentNode = currentNode.prevNode
+        current_node = playerList.head
+        while current_node is not None:
+            if current_node.player.uid == key:
+                current_node.player.set_name(name)
+                player_found = True
+            current_node = current_node.prevNode
 
-        if not playerFound:
+        if not player_found:
             playerList.append(key, name)
