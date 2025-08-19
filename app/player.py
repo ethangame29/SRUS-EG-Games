@@ -15,3 +15,16 @@ class Player:
     @property
     def name(self):
         return self.__name
+
+    def set_name(self, name):
+        self.__name = name
+
+    @classmethod
+    def hash_function(cls, key: str) -> int:
+        total = 0
+        for char in key:
+            total += ord(char)
+        return total
+
+    def __hash__(self):
+        return self.hash_function(self.uid)
