@@ -42,5 +42,21 @@ class PlayerHashMap:
                 player_found = True
             current_node = current_node.prevNode
 
-        if not player_found:
+        if player_found:
+            return current_node.player
+        else:
+            raise NotFoundError("Player not found")
+
+    def __delitem__(self, key: str):
+        player_found = False
+        player_list = self.hashmap[self.get_index(key)]
+        current_node = player_list.head
+        while current_node is not None:
+            if current_node.player.uid == key:
+                player_found = True
+            current_node = current_node.prevNode
+
+        if player_found:
+            player_list.pop(key)
+        else:
             raise NotFoundError("Player not found")
