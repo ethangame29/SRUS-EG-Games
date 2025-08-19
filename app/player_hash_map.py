@@ -64,5 +64,5 @@ class PlayerHashMap:
     def __len__(self):
         length = 0
         for player_list in self.hashmap:
-            length = length + player_list.len
+            length = length + len(player_list)
         return length
