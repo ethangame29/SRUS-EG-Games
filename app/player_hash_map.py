@@ -60,3 +60,9 @@ class PlayerHashMap:
             player_list.pop(key)
         else:
             raise NotFoundError("Player not found")
+
+    def __len__(self):
+        length = 0
+        for player_list in self.hashmap:
+            length = length + player_list.len
+        return length
