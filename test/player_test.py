@@ -1,7 +1,8 @@
 import unittest
 from app.player import Player
 
-class playerTest(unittest.TestCase):
+
+class PlayerTest(unittest.TestCase):
 
     def test_player_name_return(self):
         a = Player(1234, "Joe")
