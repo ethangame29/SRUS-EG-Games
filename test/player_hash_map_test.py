@@ -17,22 +17,26 @@ class PlayerHashMapTest(unittest.TestCase):
         hash_map.__setitem__("1", "Ethan")
         hash_map.__setitem__("3", "Bob")
         hash_map.__setitem__("2", "Bill")
-        hash_map.__setitem__("8", "Jeb")
+        hash_map.__setitem__("12", "Jeb")
         index = hash_map.get_index("1")
         self.assertEqual(index, 9)
 
     def test_hash_map_get(self):
         hash_map = PlayerHashMap()
-        hash_map.__setitem__("3", "Ethan")
+        hash_map.__setitem__("1", "Ethan")
+        hash_map.__setitem__("3", "Bob")
+        hash_map.__setitem__("2", "Bill")
+        hash_map.__setitem__("8", "Jeb")
         player = hash_map.__getitem__("3")
         self.assertEqual(int(player.uid), 3)
 
     def test_hash_map_remove(self):
         hash_map = PlayerHashMap()
-        hash_map.__setitem__("3", "Ethan")
-        hash_map.__delitem__("3")
-        player = hash_map.__getitem__("3")
-        self.assertEqual(int(player.uid), 3)
+        hash_map.__setitem__("1", "Bob")
+        hash_map.__setitem__("12", "Bill")
+        hash_map.__delitem__("12")
+        player = hash_map.__getitem__("1")
+        self.assertEqual(int(player.uid), 1)
 
 
 if __name__ == '__main__':

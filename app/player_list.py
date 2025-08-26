@@ -54,15 +54,24 @@ class PlayerList:
             self.append(id, name)
         self._length += 1
 
+    # The Pop methods below only work if the item you are looking for is in the player_list.
+    # This should be fine because as of currently, these methods are only ever called if
+    # the player_hash_map player_locator function has found the respective item.
     def pop_head(self):
+        id = self._head.key
         self._head = self._head.prev_node
-        self._head.next_node = None
+        if self._head is not None:
+            self._head.next_node = None
         self._length -= 1
+        return id
 
     def pop_tail(self):
+        id = self._tail.key
         self._tail = self._tail.next_node
-        self._tail.prev_node = None
+        if self._tail is not None:
+            self._tail.prev_node = None
         self._length -= 1
+        return id
 
     def pop(self, key):
         id = self._head.key
@@ -70,12 +79,21 @@ class PlayerList:
         while id is not key:
             current_node = current_node.prev_node
             id = current_node.key
-        prev_node = current_node.prev_node
-        next_node = current_node.next_node
 
-        if prev_node is not None and next_node is not None:
-            next_node.prev_node = prev_node
-            prev_node.next_node = next_node
+        if self._head == current_node:
+            id = self.pop_head()
+        elif self._tail == current_node:
+            id = self.pop_tail()
+        else:
+            prev_node = current_node.prev_node
+            next_node = current_node.next_node
+
+            current_node.prev_node = None
+            current_node.next_node = None
+
+            if prev_node is not None and next_node is not None:
+                next_node.prev_node = prev_node
+                prev_node.next_node = next_node
 
         self._length -= 1
 

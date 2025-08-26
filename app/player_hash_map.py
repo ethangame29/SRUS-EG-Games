@@ -8,17 +8,17 @@ class NotFoundError(Exception):
 
 
 def player_locator(player_list, key):
-
     current_node = None
 
     if player_list.head is not None:
         current_node = player_list.head
-        id = current_node.key
-        while id is not key:
+        while current_node is not None and current_node.key is not key:
             current_node = current_node.prev_node
-            id = current_node.key
 
-    return current_node
+    if current_node is not None and current_node.key == key:
+        return current_node
+    else:
+        return None
 
 
 class PlayerHashMap:
@@ -49,6 +49,8 @@ class PlayerHashMap:
         player = player_locator(player_list, key)
 
         if player is not None:
+            print(player.next_node)
+            print(player.prev_node)
             return player.player
         else:
             raise NotFoundError("Player not found")
