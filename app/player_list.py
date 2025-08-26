@@ -1,79 +1,81 @@
 import player_node
 import player
 
+
 class PlayerList:
 
     def __init__(self):
-        self.__head = None
-        self.__tail = None
-        self.__length = 0
+        self._head = None
+        self._tail = None
+        self._length = 0
 
     @property
     def head(self):
-        return self.__head
+        return self._head
 
     @property
     def tail(self):
-        return self.__tail
+        return self._tail
 
     def __len__(self):
         return self.__length
 
-    def display(self, forward = True):
+    def display(self, forward= rue):
+
         if forward is True:
-            currentNode = self.__head
-            while currentNode is not None:
-                print(currentNode.player)
-                currentNode = currentNode.prevNode
+            current_node = self._head
+            while current_node is not None:
+                print(current_node.player)
+                current_node = current_node.prevNode
         else:
-            currentNode = self.__tail
-            while currentNode is not None:
-                print(currentNode.player)
-                currentNode = currentNode.nextNode
+            current_node = self._tail
+            while current_node is not None:
+                print(current_node.player)
+                current_node = current_node.nextNode
 
     def append(self, id, name):
-        if self.__head is not None:
-            newNode = player_node.PlayerNode(player.Player(id, name))
-            self.__head.setNextNode(newNode)
-            newNode.setPrevNode(self.__head)
-            self.__head = newNode
+        if self._head is not None:
+            new_node = player_node.PlayerNode(player.Player(id, name))
+            self._head.next_node = new_node
+            new_node.prev_node = self._head
+            self._head = new_node
         else:
-            newNode = player_node.PlayerNode(player.Player(id, name))
-            self.__head = newNode
-            self.__tail = newNode
-        self.__length += 1
+            new_node = player_node.PlayerNode(player.Player(id, name))
+            self._head = new_node
+            self._tail = new_node
+        self._length += 1
 
-    def appendEnd(self, id, name):
-        if self.__head is not None:
-            newNode = player_node.PlayerNode(player.Player(id, name))
-            self.__tail.setPrevNode(newNode)
-            newNode.setNextNode(self.__tail)
-            self.__tail = newNode
+    def append_end(self, id, name):
+        if self._head is not None:
+            new_node = player_node.PlayerNode(player.Player(id, name))
+            self._tail.prev_node = new_node
+            new_node.next_node = self._tail
+            self._tail = new_node
         else:
             self.append(id, name)
         self.__length += 1
 
-    def popHead(self):
-        self.__head = self.__head.prevNode
-        self.__head.setNextNode = None
-        self.__length -= 1
-    def popTail(self):
-        self.__tail = self.__tail.nextNode
-        self.__tail.setPrevNode = None
-        self.__length -= 1
+    def pop_head(self):
+        self._head = self._head.prev_node
+        self._head.next_node = None
+        self._length -= 1
+    def pop_tail(self):
+        self._tail = self._tail.next_node
+        self._tail.prev_node = None
+        self._length -= 1
 
     def pop(self, key):
-        id = self.__head.key
-        currentNode = self.__head
+        id = self._head.key
+        current_node = self._head
         while id is not key:
-            currentNode = currentNode.prevNode
-            id = currentNode.key
-        prevnode = currentNode.prevNode
-        nextnode = currentNode.nextNode
+            current_node = current_node.prev_node
+            id = current_node.key
+        prev_node = current_node.prev_node
+        next_node = current_node.next_node
 
-        nextnode.setPrevNode(prevnode)
-        prevnode.setNextNode(nextnode)
+        next_node.prev_node = prev_node
+        prev_node.next_node = next_node
 
-        self.__length -= 1
+        self._length -= 1
 
         return id

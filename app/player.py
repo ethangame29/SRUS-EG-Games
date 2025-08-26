@@ -2,22 +2,22 @@
 class Player:
 
     def __init__(self, id, name):
-        self.__id = id
-        self.__name = name
+        self._id = id
+        self._name = name
 
     def __str__(self):
-        return f"{self.__name} | ID: {self.__id}"
+        return f"{self._name} | ID: {self._id}"
 
     @property
     def uid(self):
-        return self.__id
+        return self._id
 
     @property
     def name(self):
-        return self.__name
+        return self._name
 
     def set_name(self, name):
-        self.__name = name
+        self._name = name
 
     @classmethod
     def hash_function(cls, key: str) -> int:
