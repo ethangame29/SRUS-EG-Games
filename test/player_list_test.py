@@ -37,6 +37,7 @@ class PlayerListTest(unittest.TestCase):
         player_list.append(1, "Bob")
         player_list.pop_head()
         self.assertEqual(player_list.head.key, 3)
+        self.assertEqual(player_list.head.next_node, None)
 
     def test_pop_tail(self):
         player_list = PlayerList()
@@ -45,6 +46,7 @@ class PlayerListTest(unittest.TestCase):
         player_list.append(1, "Bob")
         player_list.pop_tail()
         self.assertEqual(player_list.tail.key, 3)
+        self.assertEqual(player_list.tail.prev_node, None)
 
     def test_pop_by_key(self):
         player_list = PlayerList()
