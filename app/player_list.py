@@ -73,8 +73,9 @@ class PlayerList:
         prev_node = current_node.prev_node
         next_node = current_node.next_node
 
-        next_node.prev_node = prev_node
-        prev_node.next_node = next_node
+        if prev_node is not None and next_node is not None:
+            next_node.prev_node = prev_node
+            prev_node.next_node = next_node
 
         self._length -= 1
 
