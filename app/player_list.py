@@ -1,70 +1,71 @@
 import player_node
 import player
 
+
 class PlayerList:
 
     def __init__(self):
-        self.__head = None
-        self.__tail = None
+        self._head = None
+        self._tail = None
 
     @property
     def head(self):
-        return self.__head
+        return self._head
 
     @property
     def tail(self):
-        return self.__tail
+        return self._tail
 
-    def display(self, forward = True):
+    def display(self, forward=True):
         if forward is True:
-            currentNode = self.__head
-            while currentNode is not None:
-                print(currentNode.player)
-                currentNode = currentNode.prevNode
+            current_node = self._head
+            while current_node is not None:
+                print(current_node.player)
+                current_node = current_node.prevNode
         else:
-            currentNode = self.__tail
-            while currentNode is not None:
-                print(currentNode.player)
-                currentNode = currentNode.nextNode
+            current_node = self._tail
+            while current_node is not None:
+                print(current_node.player)
+                current_node = current_node.nextNode
 
     def append(self, id, name):
-        if self.__head is not None:
-            newNode = player_node.PlayerNode(player.Player(id, name))
-            self.__head.setNextNode(newNode)
-            newNode.setPrevNode(self.__head)
-            self.__head = newNode
+        if self._head is not None:
+            new_node = player_node.PlayerNode(player.Player(id, name))
+            self._head.next_node = new_node
+            new_node.prev_node = self._head
+            self._head = new_node
         else:
-            newNode = player_node.PlayerNode(player.Player(id, name))
-            self.__head = newNode
-            self.__tail = newNode
+            new_node = player_node.PlayerNode(player.Player(id, name))
+            self._head = new_node
+            self._tail = new_node
 
-    def appendEnd(self, id, name):
-        if self.__head is not None:
-            newNode = player_node.PlayerNode(player.Player(id, name))
-            self.__tail.setPrevNode(newNode)
-            newNode.setNextNode(self.__tail)
-            self.__tail = newNode
+    def append_end(self, id, name):
+        if self._head is not None:
+            new_node = player_node.PlayerNode(player.Player(id, name))
+            self._tail.prev_node = new_node
+            new_node.next_node = self._tail
+            self._tail = new_node
         else:
             self.append(id, name)
 
-    def popHead(self):
-        self.__head = self.__head.prevNode
-        self.__head.setNextNode = None
+    def pop_head(self):
+        self._head = self._head.prev_node
+        self._head.next_node = None
 
-    def popTail(self):
-        self.__tail = self.__tail.nextNode
-        self.__tail.setPrevNode = None
+    def pop_tail(self):
+        self._tail = self._tail.next_node
+        self._tail.set_prev_node = None
 
     def pop(self, key):
-        id = self.__head.key
-        currentNode = self.__head
+        id = self._head.key
+        current_node = self._head
         while id is not key:
-            currentNode = currentNode.prevNode
-            id = currentNode.key
-        prevnode = currentNode.prevNode
-        nextnode = currentNode.nextNode
+            current_node = current_node.prev_node
+            id = current_node.key
+        prev_node = current_node.prev_node
+        next_node = current_node.next_node
 
-        nextnode.setPrevNode(prevnode)
-        prevnode.setNextNode(nextnode)
+        next_node.prev_node = prev_node
+        prev_node.next_node = next_node
 
         return id

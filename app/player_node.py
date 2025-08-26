@@ -2,31 +2,33 @@
 class PlayerNode:
 
     def __init__(self, player):
-        self.__player = player
-        self.__nextNode = None
-        self.__prevNode = None
+        self._player = player
+        self._nextNode = None
+        self._prevNode = None
 
     def __str__(self):
-        return f"{self.__nextNode}\n[{self.__player}]\n{self.__prevNode}"
+        return f"{self._nextNode}\n[{self._player}]\n{self._prevNode}"
 
     @property
     def player(self):
-        return self.__player
+        return self._player
 
     @property
     def key(self):
-        return self.__player.uid
+        return self._player.uid
 
     @property
-    def nextNode(self):
-        return self.__nextNode
+    def next_node(self):
+        return self._nextNode
 
-    def setNextNode(self, node):
-        self.__nextNode = node
+    @next_node.setter
+    def next_node(self, node):
+        self._nextNode = node
 
     @property
-    def prevNode(self):
-        return self.__prevNode
+    def prev_node(self):
+        return self._prevNode
 
-    def setPrevNode(self, node):
-        self.__prevNode = node
+    @prev_node.setter
+    def prev_node(self, node):
+        self._prevNode = node
