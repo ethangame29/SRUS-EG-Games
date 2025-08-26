@@ -58,7 +58,7 @@ class PlayerList:
         self._head = self._head.prev_node
         self._head.next_node = None
         self._length -= 1
-    
+
     def pop_tail(self):
         self._tail = self._tail.next_node
         self._tail.prev_node = None
