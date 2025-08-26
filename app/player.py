@@ -16,7 +16,8 @@ class Player:
     def name(self):
         return self._name
 
-    def set_name(self, name):
+    @name.setter
+    def name(self, name):
         self._name = name
 
     @classmethod
