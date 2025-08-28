@@ -12,6 +12,17 @@ class PlayerHashMapTest(unittest.TestCase):
         hash_map.__setitem__("8", "Jeb")
         self.assertEqual(len(hash_map), 4)
 
+    def test_hash_map_set(self):
+        hash_map = PlayerHashMap()
+        hash_map.__setitem__("1", "Ethan")
+        hash_map.__setitem__("3", "Bob")
+        hash_map.__setitem__("2", "Bill")
+        hash_map.__setitem__("8", "Jeb")
+        self.assertEqual(hash_map.__getitem__("1").uid, "1")
+        self.assertEqual(hash_map.__getitem__("3").uid, "3")
+        self.assertEqual(hash_map.__getitem__("2").uid, "2")
+        self.assertEqual(hash_map.__getitem__("8").uid, "8")
+
     def test_hash_map_get_index(self):
         hash_map = PlayerHashMap()
         hash_map.__setitem__("1", "Ethan")
