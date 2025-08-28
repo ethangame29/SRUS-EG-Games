@@ -29,6 +29,15 @@ class PlayerHashMap:
         for number in range(self.SIZE):
             self.hashmap.append(PlayerList())
 
+    def display(self):
+        index = 0
+        for player_list in self.hashmap:
+            if len(player_list) >= 1:
+                print(f"List {index}")
+                player_list.display()
+                print("\n")
+            index += 1
+
     def get_index(self, key: str | Player) -> int:
         if isinstance(key, Player):
             return hash(key) % self.SIZE
@@ -49,8 +58,6 @@ class PlayerHashMap:
         player = player_locator(player_list, key)
 
         if player is not None:
-            print(player.next_node)
-            print(player.prev_node)
             return player.player
         else:
             raise NotFoundError("Player not found")
