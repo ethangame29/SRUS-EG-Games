@@ -95,6 +95,6 @@ class PlayerList:
                 next_node.prev_node = prev_node
                 prev_node.next_node = next_node
 
-        self._length -= 1
+            self._length -= 1
 
         return id
