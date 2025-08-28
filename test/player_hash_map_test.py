@@ -35,8 +35,8 @@ class PlayerHashMapTest(unittest.TestCase):
         hash_map.__setitem__("1", "Bob")
         hash_map.__setitem__("12", "Bill")
         hash_map.__delitem__("12")
-        player = hash_map.__getitem__("1")
-        self.assertEqual(int(player.uid), 1)
+        with self.assertRaises(Exception):
+            hash_map.__getitem__("12")
 
 
 if __name__ == '__main__':
