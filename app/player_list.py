@@ -25,12 +25,12 @@ class PlayerList:
             current_node = self._head
             while current_node is not None:
                 print(current_node.player)
-                current_node = current_node.prevNode
+                current_node = current_node.prev_node
         else:
             current_node = self._tail
             while current_node is not None:
                 print(current_node.player)
-                current_node = current_node.nextNode
+                current_node = current_node.next_node
 
     def append(self, id, name):
         if self._head is not None:
