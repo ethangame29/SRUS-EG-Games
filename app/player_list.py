@@ -21,12 +21,12 @@ class PlayerList:
             current_node = self._head
             while current_node is not None:
                 print(current_node.player)
-                current_node = current_node.prevNode
+                current_node = current_node.prev_node
         else:
             current_node = self._tail
             while current_node is not None:
                 print(current_node.player)
-                current_node = current_node.nextNode
+                current_node = current_node.next_node
 
     def append(self, id, name):
         if self._head is not None:
@@ -49,12 +49,18 @@ class PlayerList:
             self.append(id, name)
 
     def pop_head(self):
+        id = self._head.key
         self._head = self._head.prev_node
-        self._head.next_node = None
+        if self._head is not None:
+            self._head.next_node = None
+        return id
 
     def pop_tail(self):
+        id = self._tail.key
         self._tail = self._tail.next_node
-        self._tail.prev_node = None
+        if self._tail is not None:
+            self._tail.prev_node = None
+        return id
 
     def pop(self, key):
         id = self._head.key
@@ -62,10 +68,20 @@ class PlayerList:
         while id is not key:
             current_node = current_node.prev_node
             id = current_node.key
-        prev_node = current_node.prev_node
-        next_node = current_node.next_node
 
-        next_node.prev_node = prev_node
-        prev_node.next_node = next_node
+        if self._head == current_node:
+            id = self.pop_head()
+        elif self._tail == current_node:
+            id = self.pop_tail()
+        else:
+            prev_node = current_node.prev_node
+            next_node = current_node.next_node
+
+            current_node.prev_node = None
+            current_node.next_node = None
+
+            if prev_node is not None and next_node is not None:
+                next_node.prev_node = prev_node
+                prev_node.next_node = next_node
 
         return id
