@@ -42,10 +42,10 @@ class Player:
     def sort_quickly(cls, array):
         if len(array) <= 1:
             return array
-        pivot = array[0]
+        pivot = array.pop(len(array) // 2)
         left = []
         right = []
-        for x in array[1:]:
+        for x in array:
             if x < pivot:
                 left.append(x)
             else:

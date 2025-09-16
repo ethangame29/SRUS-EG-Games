@@ -68,3 +68,14 @@ class PlayerTest(unittest.TestCase):
         comparison_sort = sorted(players, reverse=True)
 
         self.assertListEqual(sorted_players, comparison_sort)
+
+    def test_sort_quickly_players_1000_presorted(self):
+        players = [Player(f"{i:03}", f"Player {i}", score=random.randint(0, 1000)) for i in range(1000)]
+
+        sorted_players = sorted(players)
+
+        sorted_again = Player.sort_quickly(sorted_players)
+
+        comparison_sort = sorted(players, reverse=True)
+
+        self.assertListEqual(sorted_again, comparison_sort)

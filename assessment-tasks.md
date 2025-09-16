@@ -374,7 +374,34 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+Ran 1 test in 0.164s
+
+FAILED (errors=1)
+
+Error
+Traceback (most recent call last):
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\test\player_test.py", line 77, in test_sort_quickly_players_1000_presorted
+    sorted_again = Player.sort_quickly(sorted_players)
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\app\player.py", line 53, in sort_quickly
+    return cls.sort_quickly(right) + [pivot] + cls.sort_quickly(left)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\app\player.py", line 53, in sort_quickly
+    return cls.sort_quickly(right) + [pivot] + cls.sort_quickly(left)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\app\player.py", line 53, in sort_quickly
+    return cls.sort_quickly(right) + [pivot] + cls.sort_quickly(left)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  [Previous line repeated 982 more times]
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\app\player.py", line 49, in sort_quickly
+    if x < pivot:
+       ^^^^^^^^^
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\app\player.py", line 13, in __lt__
+    return self._score < other.score
+                         ^^^^^^^^^^^
+RecursionError: maximum recursion depth exceeded
+
+
+Process finished with exit code 1
 ```
 
 ##### 5.3.4.1 Question: Why does the algorithm fail on presorted values?
@@ -383,22 +410,36 @@ Provide a reason why this test failed (if you got a recursion errors, you need t
 
 If your implementation did not fail, you must nevertheless explain why the senior developers algorithm has worse space complexity for presorted values.
 
-> Answer here
+> The test failed because the presorted list was 1 - 1000.
+> The algorithm works by splitting the list into 2 based on a pivot which was always set to the first index.
+> Because in this sorted list, the first value is 1 so every other value is greater, meaning the split list would result in one empty and one being full.
+> This results in the algorithm just iterating through the whole list 1000 times until it gets to processing the other list, which tips the algorithm over the recursion limit.
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+@classmethod
+    def sort_quickly(cls, array):
+        if len(array) <= 1:
+            return array
+        pivot = array.pop(len(array) // 2) # Pivot is set to the middle item and popped.
+        left = []
+        right = []
+        for x in array: # No need to ignore first value anymore
+            if x < pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(right) + [pivot] + cls.sort_quickly(left)
 ```
 
 #### 5.3.5. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case passes only when changes above are added
-- [ ] Explanation of why the algorithm fails on presorted values
-- [ ] Fix to the algorithm provided
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case passes only when changes above are added
+- [x] Explanation of why the algorithm fails on presorted values
+- [x] Fix to the algorithm provided
+- [x] At least one commit capturing the above changes
 
 ## 6. Task: Authenticity of in class work
 
