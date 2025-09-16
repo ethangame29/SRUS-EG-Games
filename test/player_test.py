@@ -1,4 +1,5 @@
 import unittest
+import random
 from app.player import Player
 
 
@@ -39,5 +40,22 @@ class PlayerTest(unittest.TestCase):
         bob1 = Player(2, "Bob", score=5)
         charlie1 = Player(3, "Charlie", score=15)
         manually_sorted_players = [bob1, alice1, charlie1]
-        
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
+
+    def test_sort_quickly_players(self):
+        alice = Player(1, "Alice", score=10)
+        bob = Player(2, "Bob", score=5)
+        charlie = Player(3, "Charlie", score=15)
+
+        players = [alice, bob, charlie]
+
+        sorted_players = Player.sort_quickly(players)
+
+        alice1 = Player(1, "Alice", score=10)
+        bob1 = Player(2, "Bob", score=5)
+        charlie1 = Player(3, "Charlie", score=15)
+
+        manually_sorted_players = [charlie1, alice1, bob1]
+
         self.assertListEqual(sorted_players, manually_sorted_players)

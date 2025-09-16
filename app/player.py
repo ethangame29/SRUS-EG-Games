@@ -39,6 +39,20 @@ class Player:
             raise ValueError
 
     @classmethod
+    def sort_quickly(cls, array):
+        if len(array) <= 1:
+            return array
+        pivot = array[0]
+        left = []
+        right = []
+        for x in array[1:]:
+            if x < pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(right) + [pivot] + cls.sort_quickly(left)
+
+    @classmethod
     def hash_function(cls, key: str) -> int:
         total = 0
         for char in key:

@@ -266,7 +266,8 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> The space complexity won't be great because the algorithm repeatedly creates splits of the list, taking up more memory.
+> The time complexity however would be much better due to the list being repeatedly split for sorting, reducing the number of steps required.
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -281,16 +282,47 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+    @classmethod
+    def sort_quickly(cls, array):
+        if len(array) <= 1:
+            return array
+        pivot = array[0]
+        left = []
+        right = []
+        for x in array[1:]:
+            if x < pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(right) + [pivot] + cls.sort_quickly(left)
+    
+    # UNIT TEST 
+    def test_sort_quickly_players(self):
+        alice = Player(1, "Alice", score=10)
+        bob = Player(2, "Bob", score=5)
+        charlie = Player(3, "Charlie", score=15)
+
+        players = [alice, bob, charlie]
+
+        sorted_players = Player.sort_quickly(players)
+
+        alice1 = Player(1, "Alice", score=10)
+        bob1 = Player(2, "Bob", score=5)
+        charlie1 = Player(3, "Charlie", score=15)
+
+        manually_sorted_players = [charlie1, alice1, bob1]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
+
 ```
 
 #### 5.2.3. Success criteria
 
-- [ ] Custom sorting algorithm implemented in the `Player` class as `classmethod`
-- [ ] Custom sorting algorithm sorts in descending order
-- [ ] Custom sorting algorithm compares players using their score (via the rich comparison operators)
-- [ ] Custom sorting algorithm tested in `test_player.py` and tests passed
-- [ ] At least one commit capturing the above changes
+- [x] Custom sorting algorithm implemented in the `Player` class as `classmethod`
+- [x] Custom sorting algorithm sorts in descending order
+- [x] Custom sorting algorithm compares players using their score (via the rich comparison operators)
+- [x] Custom sorting algorithm tested in `test_player.py` and tests passed
+- [x] At least one commit capturing the above changes
 
 ### 5.3. Test your custom sorting algorithm at scale
 
