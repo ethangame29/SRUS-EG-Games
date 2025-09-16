@@ -1,12 +1,16 @@
 
 class Player:
 
-    def __init__(self, id, name):
+    def __init__(self, id, name, score=0):
         self._id = id
         self._name = name
+        self._score = score
 
     def __str__(self):
-        return f"{self._name} | ID: {self._id}"
+        return f"{self._name} | ID: {self._id} | SCORE: {self._score}"
+
+    def __lt__(self, other):
+        return self._score < other.score
 
     @property
     def uid(self):
@@ -19,6 +23,17 @@ class Player:
     @name.setter
     def name(self, name):
         self._name = name
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, score):
+        if score >= 0:
+            self._score = score
+        else:
+            raise ValueError
 
     @classmethod
     def hash_function(cls, key: str) -> int:

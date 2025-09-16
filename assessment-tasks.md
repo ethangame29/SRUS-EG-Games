@@ -99,6 +99,20 @@ What was the outcome of running the above unit test, copy paste the output **for
 ```text
 Copy the traceback you got when you ran the test here.
 ```
+```python
+Ran 1 test in 0.030s
+
+FAILED (errors=1)
+
+Error
+Traceback (most recent call last):
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\test\player_test.py", line 22, in test_sort_players
+    sorted_players = sorted(players)
+TypeError: '<' not supported between instances of 'Player' and 'Player'
+
+
+Process finished with exit code 1
+```
 
 ### 4.3. Success criteria
 
@@ -114,8 +128,7 @@ What is the **only** magic method that must be implemented in the player class f
 
 **Hint:** if you don't recall this from class, the error message you got when you ran the test will help you.
 -------
-> Answer Here
-> Yes, here - instead of this text!
+> The dunder method required is the __lt__ method. The less than method.
 -------
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -136,7 +149,19 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+Ran 1 test in 0.003s
+
+FAILED (errors=1)
+
+Error
+Traceback (most recent call last):
+  File "C:\Users\GAMEET.TDM\source\repos\SRUS-EG-Games\test\player_test.py", line 23, in test_players_can_be_compared_by_score
+    self.assertLess(bob, alice)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'Player' and 'Player'
+
+
+Process finished with exit code 1
 ```
 
 - Implement the appropriate magic method in the Player class and ensure you pass this test
