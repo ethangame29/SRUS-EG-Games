@@ -116,9 +116,9 @@ Process finished with exit code 1
 
 ### 4.3. Success criteria
 
-- [ ] Unit test added to `test_player.py`
-- [ ] Unit test output provided
-- [ ] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
+- [x] Unit test added to `test_player.py`
+- [x] Unit test output provided
+- [x] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
 
 #### 4.3.1. Question: What dunder method is required for Python to sort players?
 
@@ -446,7 +446,7 @@ Propose a fix to your sorting algorithm that fixes this issue.
 Complete the following snippet before you submit:
 
 ```text
-I, <name and student number>, completed this work in class <room number>, on <date>, under the supervision of <assessor's name>.
+I, Ethan Game, completed this work in class 306, on 16/09/2025, under the supervision of Rafael Avigad.
 ```
 
 Or (if not completed in class):
@@ -460,13 +460,13 @@ I understand that until I meet my assessor to confirm that this work is a valid 
 
 ## 7. Submit your work
 
-- [ ] Ensure all tasks are complete and tests pass
-- [ ] Answer all questions in your own words
-- [ ] Complete the statement of authenticity
-- [ ] Include `.git` showing each task committed (you must show at least 5 commits)
-- [ ] Annotated tag of your last commit as `por3-finish`
-- [ ] Push your changes to your GitHub repository
-- [ ] Submit a zip of your repository to the LMS (ensure you do not add the `.venv` or `__pycache__` folders)
+- [x] Ensure all tasks are complete and tests pass
+- [x] Answer all questions in your own words
+- [x] Complete the statement of authenticity
+- [x] Include `.git` showing each task committed (you must show at least 5 commits)
+- [x] Annotated tag of your last commit as `por3-finish`
+- [x] Push your changes to your GitHub repository
+- [x] Submit a zip of your repository to the LMS (ensure you do not add the `.venv` or `__pycache__` folders)
 
 ---
 End of assessment task
