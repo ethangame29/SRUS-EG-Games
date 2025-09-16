@@ -23,20 +23,21 @@ class PlayerTest(unittest.TestCase):
         self.assertLess(bob, alice)
 
     def test_sort_players(self):
-        players = [Player(1, "Alice", score=10), Player(2, "Bob", score=5),
-                   Player(3, "Charlie",  score=15)]
+        alice = Player(1, "Alice", score=10)
+        bob = Player(2, "Bob", score=5)
+        charlie = Player(3, "Charlie",  score=15)
+
+        players = [alice, bob, charlie]
         # note: ensure initialization code is valid for **your** implementation.
         # For example, is your parameter called uid? is the first parameter name?
-        for player in players:
-            print(player)
+
         # do **not** change the following code:
         sorted_players = sorted(players)
 
         # players must be sorted by score as shown here:
-        manually_sorted_players = [Player(2, "Bob", score=5), Player(1, "Alice", score=10),
-                                   Player(3, "Charlie", score=15)]
-
-        for player in sorted_players:
-            print(player)
-
+        alice1 = Player(1, "Alice", score=10)
+        bob1 = Player(2, "Bob", score=5)
+        charlie1 = Player(3, "Charlie", score=15)
+        manually_sorted_players = [bob1, alice1, charlie1]
+        
         self.assertListEqual(sorted_players, manually_sorted_players)

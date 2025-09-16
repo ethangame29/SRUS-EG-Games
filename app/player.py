@@ -12,6 +12,9 @@ class Player:
     def __lt__(self, other):
         return self._score < other.score
 
+    def __eq__(self, other):
+        return self._score == other.score
+
     @property
     def uid(self):
         return self._id
