@@ -10,7 +10,7 @@ class PlayerBST:
     def root(self):
         return self._root
 
-    def insert(self, player, location):
+    def insert(self, player, location = None):
         if self._root is None:
             self._root = PlayerBNode(player)
             return
@@ -19,7 +19,7 @@ class PlayerBST:
             location = self._root
             # return
 
-        if location.player.name < player.name:
+        if location.player.name > player.name:
             if location.left is None:
                 location.left = PlayerBNode(player)
             else:

@@ -5,6 +5,9 @@ class PlayerBNode:
         self._left = None
         self._right = None
 
+    def __repr__(self):
+        return f"({self._player.name} <<{self._left}<< || >>{self._right}>>)"
+
     @property
     def player(self):
         return self._player
