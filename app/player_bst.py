@@ -29,3 +29,18 @@ class PlayerBST:
                 location.right = PlayerBNode(player)
             else:
                 self.insert(player, location.right)
+
+    def search(self, name: str, location = None):
+        if self._root is None:
+            return
+
+        if location is None:
+            location = self._root
+
+        if location.player.name == name:
+            return location.player
+
+        if location.player.name > name:
+            return self.search(name, location.left)
+        else:
+            return self.search(name, location.right)
