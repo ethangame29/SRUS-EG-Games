@@ -15,31 +15,6 @@ class NotFoundError(Exception):
     def __init__(self, message):
         self.message = message
 
-
-def player_locator(player_list, key):
-    """
-    Locates a Player in a HashMap.
-
-    Args:
-        player_list (PlayerList): The Player List.
-        key (str): Player Key.
-
-    Returns:
-        None or current_node
-    """
-    current_node = None
-
-    if player_list.head is not None:
-        current_node = player_list.head
-        while current_node is not None and current_node.key is not key:
-            current_node = current_node.prev_node
-
-    if current_node is not None and current_node.key == key:
-        return current_node
-    else:
-        return None
-
-
 class PlayerHashMap:
     """
     Hash Map for storing Players
@@ -87,7 +62,7 @@ class PlayerHashMap:
             name (str): The player name.
         """
         player_list = self.hashmap[self.get_index(key)]
-        player = player_locator(player_list, key)
+        player = PlayerList.player_locator(player_list, key)
 
         if player is None:
             player_list.append(key, name)
@@ -105,7 +80,7 @@ class PlayerHashMap:
             player
         """
         player_list = self.hashmap[self.get_index(key)]
-        player = player_locator(player_list, key)
+        player = PlayerList.player_locator(player_list, key)
 
         if player is not None:
             return player.player
@@ -120,7 +95,7 @@ class PlayerHashMap:
             key (str): The Player Key
         """
         player_list = self.hashmap[self.get_index(key)]
-        player = player_locator(player_list, key)
+        player = PlayerList.player_locator(player_list, key)
 
         if player is not None:
             player_list.pop(key)

@@ -73,14 +73,14 @@ def sha256_hash(key: str, size: int) -> int:
 
 1. All of the above functions are hash functions. Explain how so - what key properties do they all share?
 
-> All of the above functions are hash functions because they all take in a key which the function then returns a hash.
+> All of the above functions are hash functions because they all return a hash.
 
 2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
 
 > - The first hash function is simple and easy to set up, however it always produces a hash collision.
 > - The second hash has an algorithm to produce unique hashes, however it is still prone to hash collisions.
-> - The third is a pearson hash function which is designed to be efficient on 8-bit systems. It is however non-cryptographic, so it's not used in secure situations.
-> - The fourth uses pythons built-in hash function, it's simple to set up and can hash more data types than just a string, however it does not work on mutable objects.
+> - The third is a pearson hash function which is designed to be efficient on 8-bit systems because it processes hashes within 8 bits (1 byte). It is however non-cryptographic, so it's not used in secure situations.
+> - The fourth uses pythons built-in hash function, if an object has its own hash defined then this function will return it, otherwise it will not work.
 > - The last one uses an SHA hash function, it is far more complicated to understand but, it is cryptographic so is much more secure.
 
 3. List the three most important attributes (arranged from most to least) in the context of a hash map? Justify your answer.
@@ -88,10 +88,12 @@ def sha256_hash(key: str, size: int) -> int:
 > - Collision Resistance.
 > - Sensitivity to input changes.
 > - Item Access Speed.
-
+I Picked Collision Resistance because it allows for storing far greater amounts of data which is extremely common.
+I Picked Sensitivity to input changes because it allows for more unique hashes and greater collision resistance.
+I Picked Item Access Speed because it is important that the program can run at a decent speed. A hash map allows for indexing an item based on a key which is near instant, whereas a method like iterating can take a while depending on the items position and the data structure size.
 4. Which of the above hash functions would you choose to implement the requirements of the task? Why?
 
-> I would use the second hash function as the required purpose of the assessment is to handle hash collisions. Using this function will often produce both unique and colliding hashes which is useful for testing.
+> I would use the second hash function as the required purpose of the assessment is to handle hash collisions. Using this function will produce many colliding hashes which is useful for testing.
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
 
@@ -112,12 +114,12 @@ def sha256_hash(key: str, size: int) -> int:
 >         return hash_function(key) % SIZE
 > 
 >     def __setitem__(self, key, name):
->         player_list = hashmap[get_index(key)]
->         player = search_function(player_list, key)
+>         player_list is grabbed using get_index on hashmap using key
+>         Search for player with player_list and key
 >         if player is None:
->             player_list.append(key, name)
+>             Adds player to player_list
 >         else:
->             player.name = name
+>             Player name is overridden
 > ```
 
 ## Reflection

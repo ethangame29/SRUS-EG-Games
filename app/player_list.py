@@ -54,9 +54,32 @@ class PlayerList:
             self.append(id, name)
         self._length += 1
 
+    def player_locator(player_list, key):
+        """
+        Locates a Player in a HashMap.
+
+        Args:
+            player_list (PlayerList): The Player List.
+            key (str): Player Key.
+
+        Returns:
+            None or current_node
+        """
+        current_node = None
+
+        if player_list.head is not None:
+            current_node = player_list.head
+            while current_node is not None and current_node.key is not key:
+                current_node = current_node.prev_node
+
+        if current_node is not None and current_node.key == key:
+            return current_node
+        else:
+            return None
+
     # The Pop methods below only work if the item you are looking for is in the player_list.
     # This should be fine because as of currently, these methods are only ever called if
-    # the player_hash_map player_locator function has found the respective item.
+    # the player_locator function has found the respective item.
     def pop_head(self):
         id = self._head.key
         self._head = self._head.prev_node
