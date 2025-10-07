@@ -73,13 +73,13 @@ def sha256_hash(key: str, size: int) -> int:
 
 1. All of the above functions are hash functions. Explain how so - what key properties do they all share?
 
-> All of the above functions are hash functions because they all return a hash.
+> All of the above functions are hash functions because they all intake a given input and return a fixed output of a fixed length.
 
 2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
 
 > - The first hash function is simple and easy to set up, however it always produces a hash collision.
 > - The second hash has an algorithm to produce unique hashes, however it is still prone to hash collisions.
-> - The third is a pearson hash function which is designed to be efficient on 8-bit systems because it processes hashes within 8 bits (1 byte). It is however non-cryptographic, so it's not used in secure situations.
+> - The third is a pearson hash function which can be implemented efficiently on 8-bit systems because it processes hashes within 8 bits (1 byte). It is however non-cryptographic, so it's not used in secure situations.
 > - The fourth uses pythons built-in hash function, if an object has its own hash defined then this function will return it, otherwise it will not work.
 > - The last one uses an SHA hash function, it is far more complicated to understand but, it is cryptographic so is much more secure.
 

@@ -4,7 +4,7 @@ from app.player import Player
 
 class PlayerHashMap:
     """
-    Hash Map for storing Players
+    Hash Map for storing Players. Holds a number of player_list which each will contain the players.
     """
     SIZE: int = 10
 
@@ -27,7 +27,7 @@ class PlayerHashMap:
 
     def get_index(self, key: str | Player) -> int:
         """
-        Gets index of a Player through a hash.
+        Gets player_list index through a hashing a player key.
 
         Args:
             key (str | Player): The player key.
@@ -42,7 +42,8 @@ class PlayerHashMap:
 
     def __setitem__(self, key: str, name: str) -> None:
         """
-        Set a player in Hash Map.
+        Add/Set a player in Hash Map. The player_list is located by hashing the key.
+        It will either set or override if the player exists in the list or not.
 
         Args:
             key (str): The player key.
@@ -58,7 +59,7 @@ class PlayerHashMap:
 
     def __getitem__(self, key: str):
         """
-        Get Player from Hash Map.
+        Get Player from Hash Map. The player_list is located by hashing the key.
 
         Args:
             key (str): The player key.
@@ -73,7 +74,7 @@ class PlayerHashMap:
 
     def __delitem__(self, key: str):
         """
-        Deletes Player from Hash Map.
+        Pops player from a hashmap. The player_list is located by hashing the key.
 
         Args:
             key (str): The Player Key
@@ -83,7 +84,7 @@ class PlayerHashMap:
 
     def __len__(self):
         """
-        Grabs Length of Hash Map
+        Counts the number of players in a hashmap and returns the total.
 
         returns:
             int: length

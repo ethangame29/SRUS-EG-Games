@@ -54,21 +54,21 @@ class PlayerList:
             self.append(id, name)
         self._length += 1
 
-    def player_locator(player_list, key):
+    def player_locator(self, key):
         """
-        Locates a Player in a HashMap.
+        Iterates through a player_list until provided key matches and then returns.
 
         Args:
-            player_list (PlayerList): The Player List.
+            self (PlayerList): The Player List.
             key (str): Player Key.
 
         Returns:
-            None or current_node
+            current_node
         """
         current_node = None
 
-        if player_list.head is not None:
-            current_node = player_list.head
+        if self.head is not None:
+            current_node = self.head
             while current_node is not None and current_node.key is not key:
                 current_node = current_node.prev_node
 
@@ -94,14 +94,21 @@ class PlayerList:
         return id
 
     def pop(self, key):
+        """
+        Calls player_locator to then find and pop a player by the given key.
+
+        Args:
+            key (str): Player Key.
+
+        Returns:
+        player id
+        """
         player = self.player_locator(key)
-        if player is None:
-            raise KeyError("Player not found")
 
         if self._head == player:
-            id = self.pop_head()
+            id_ = self.pop_head()
         elif self._tail == player:
-            id = self.pop_tail()
+            id_ = self.pop_tail()
         else:
             prev_node = player.prev_node
             next_node = player.next_node
@@ -112,8 +119,8 @@ class PlayerList:
             next_node.prev_node = prev_node
             prev_node.next_node = next_node
 
-            id = player.key
+            id_ = player.key
 
             self._length -= 1
 
-        return id
+        return id_
