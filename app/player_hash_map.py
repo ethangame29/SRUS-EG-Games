@@ -2,19 +2,6 @@ from app.player_list import PlayerList
 from app.player import Player
 
 
-class NotFoundError(Exception):
-    """
-    Throws NotFoundError.
-
-    Args:
-        message (str): Error Message.
-
-    Returns:
-        None
-    """
-    def __init__(self, message):
-        self.message = message
-
 class PlayerHashMap:
     """
     Hash Map for storing Players
@@ -62,12 +49,12 @@ class PlayerHashMap:
             name (str): The player name.
         """
         player_list = self.hashmap[self.get_index(key)]
-        player = PlayerList.player_locator(player_list, key)
 
-        if player is None:
-            player_list.append(key, name)
-        else:
+        try:
+            player = PlayerList.player_locator(player_list, key)
             player.player.name = name
+        except KeyError:
+            player_list.append(key, name)
 
     def __getitem__(self, key: str):
         """
@@ -82,10 +69,7 @@ class PlayerHashMap:
         player_list = self.hashmap[self.get_index(key)]
         player = PlayerList.player_locator(player_list, key)
 
-        if player is not None:
-            return player.player
-        else:
-            raise NotFoundError("Player not found")
+        return player.player
 
     def __delitem__(self, key: str):
         """
@@ -95,12 +79,7 @@ class PlayerHashMap:
             key (str): The Player Key
         """
         player_list = self.hashmap[self.get_index(key)]
-        player = PlayerList.player_locator(player_list, key)
-
-        if player is not None:
-            player_list.pop(key)
-        else:
-            raise NotFoundError("Player not found")
+        return player_list.pop(key)
 
     def __len__(self):
         """

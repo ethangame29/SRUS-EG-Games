@@ -1,5 +1,5 @@
 import unittest
-from app.player_hash_map import PlayerHashMap, NotFoundError
+from app.player_hash_map import PlayerHashMap
 
 
 class PlayerHashMapTest(unittest.TestCase):
@@ -46,7 +46,7 @@ class PlayerHashMapTest(unittest.TestCase):
         hash_map["1"] = "Bob"
         hash_map["12"] = "Bill"
         del hash_map["12"]
-        with self.assertRaises(NotFoundError):
+        with self.assertRaises(KeyError):
             player = hash_map["12"]
 
 

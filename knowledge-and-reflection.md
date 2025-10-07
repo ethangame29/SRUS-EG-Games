@@ -85,12 +85,12 @@ def sha256_hash(key: str, size: int) -> int:
 
 3. List the three most important attributes (arranged from most to least) in the context of a hash map? Justify your answer.
 
-> - Collision Resistance.
+> - Uniformity.
 > - Sensitivity to input changes.
-> - Item Access Speed.
-I Picked Collision Resistance because it allows for storing far greater amounts of data which is extremely common.
+> - Hash Speed.
+I Picked Uniformity because it allows for greater efficiency in hashing data.
 I Picked Sensitivity to input changes because it allows for more unique hashes and greater collision resistance.
-I Picked Item Access Speed because it is important that the program can run at a decent speed. A hash map allows for indexing an item based on a key which is near instant, whereas a method like iterating can take a while depending on the items position and the data structure size.
+I Picked Hash Speed because it is important that the program can run at a decent speed. The quicker the hash function, the quicker you can access data.
 4. Which of the above hash functions would you choose to implement the requirements of the task? Why?
 
 > I would use the second hash function as the required purpose of the assessment is to handle hash collisions. Using this function will produce many colliding hashes which is useful for testing.
@@ -111,7 +111,7 @@ I Picked Item Access Speed because it is important that the program can run at a
 >     hashmap    
 > 
 >     def get_index(self, key):
->         return hash_function(key) % SIZE
+>         Returns a hash of the key modulo SIZE
 > 
 >     def __setitem__(self, key, name):
 >         player_list is grabbed using get_index on hashmap using key

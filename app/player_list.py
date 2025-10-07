@@ -75,11 +75,8 @@ class PlayerList:
         if current_node is not None and current_node.key == key:
             return current_node
         else:
-            return None
+            raise KeyError("Player not found")
 
-    # The Pop methods below only work if the item you are looking for is in the player_list.
-    # This should be fine because as of currently, these methods are only ever called if
-    # the player_locator function has found the respective item.
     def pop_head(self):
         id = self._head.key
         self._head = self._head.prev_node
@@ -97,26 +94,25 @@ class PlayerList:
         return id
 
     def pop(self, key):
-        id = self._head.key
-        current_node = self._head
-        while id is not key:
-            current_node = current_node.prev_node
-            id = current_node.key
+        player = self.player_locator(key)
+        if player is None:
+            raise KeyError("Player not found")
 
-        if self._head == current_node:
+        if self._head == player:
             id = self.pop_head()
-        elif self._tail == current_node:
+        elif self._tail == player:
             id = self.pop_tail()
         else:
-            prev_node = current_node.prev_node
-            next_node = current_node.next_node
+            prev_node = player.prev_node
+            next_node = player.next_node
 
-            current_node.prev_node = None
-            current_node.next_node = None
+            player.prev_node = None
+            player.next_node = None
 
-            if prev_node is not None and next_node is not None:
-                next_node.prev_node = prev_node
-                prev_node.next_node = next_node
+            next_node.prev_node = prev_node
+            prev_node.next_node = next_node
+
+            id = player.key
 
             self._length -= 1
 
