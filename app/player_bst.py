@@ -32,7 +32,7 @@ class PlayerBST:
 
     def search(self, name: str, location = None):
         if self._root is None:
-            return
+            raise KeyError("List is empty")
 
         if location is None:
             location = self._root
@@ -40,10 +40,12 @@ class PlayerBST:
         if location.player.name == name:
             return location.player
 
-        if location.player.name > name:
+        if location.left is not None and location.player.name > name:
             return self.search(name, location.left)
-        else:
+        elif location.right is not None and location.player.name < name:
             return self.search(name, location.right)
+        else:
+            raise KeyError("Player Not Found")
 
     def optimise(self):
         sorted = self.create_sorted_list()

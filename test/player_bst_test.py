@@ -104,6 +104,14 @@ class PlayerBSTTest(unittest.TestCase):
         self.assertEqual(found_player7.name, "A")
         self.assertEqual(found_player8.name, "C")
 
+    def test_bst_search_null(self):
+        bst = PlayerBST()
+
+        bst.insert(Player(1,"E"))
+
+        with self.assertRaises(KeyError):
+            bst.search("B")
+
     def test_create_sorted_list(self):
         player = Player(1, "E")
         player2 = Player(2, "G")
@@ -142,15 +150,15 @@ class PlayerBSTTest(unittest.TestCase):
     #     A
 
     def test_optimise_bst(self):
-        player = Player(1, "E")
-        player2 = Player(2, "G")
-        player3 = Player(3, "D")
+        player = Player(1, "A")
+        player2 = Player(2, "B")
+        player3 = Player(3, "C")
 
-        player4 = Player(4, "B")
-        player5 = Player(5, "H")
+        player4 = Player(4, "D")
+        player5 = Player(5, "E")
         player6 = Player(6, "F")
-        player7 = Player(7, "A")
-        player8 = Player(8, "C")
+        player7 = Player(7, "G")
+        player8 = Player(8, "H")
 
         bst = PlayerBST()
 
